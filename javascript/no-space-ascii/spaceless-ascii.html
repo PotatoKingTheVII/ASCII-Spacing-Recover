@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-UK">
+<head>
+<title>ASCII Base-n Decoder</title>
+<script type="text/javascript" src="decodeASCII.js"></script>
+<link rel="stylesheet" href="stylesAscii.css">
+</head>
+
+<body>
+<!--Top header-->
+<div class="center-screen">
+	<div class="topHeader">
+		<h1 id="HeaderPNG">ASCII Spacing Bruteforcer</h1>
+		<p>Recover printable text payloads from variable width encodings</p>
+
+	</div>
+	<hr>
+
+	<!--DECODE SECTION START-->
+	<div class="row">
+		<div class="column">
+			<h2>Decode Ciphertext</h2>
+
+			<div class="row">		
+				<label for="inputTxt">Raw Ciphertext:</label>
+			</div>
+
+			<div class="row">	
+				<br>			
+				<textarea id="inputTxt" name="inputTxt" rows="6" cols="80"/></textarea>
+			</div>
+			
+			<label for="low_num_input">Range Limits (Inclusive):</label>
+			<input id = "low_num_input" type = "number" value = "32">			
+			<input id = "high_num_input" type = "number" value = "126">	
+			<button onclick="bruteforceCall()">Bruteforce</button>	
+
+			<div class="row">	
+				<br>
+				<label for="outputTxt">Decoded output:</label>
+
+			</div>
+			
+			<div class="rowOutput">			
+				<p class="formfield">
+					<label for="outputTxtDec">Decimal:</label>
+					<textarea id="outputTxtDec" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>
+				
+				<p class="formfield">
+					<label for="outputTxtOct">Octal:</label>
+					<textarea id="outputTxtOct" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>
+				
+				<p class="formfield">
+					<label for="outputTxtHex">Hex:</label>
+					<textarea id="outputTxtHex" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>	
+			</div>	
+	
+			<div class="rowOutput">			
+				<p class="formfield">
+					<label for="outputTxtBin">Bin - Forward/High:</label>
+					<textarea id="outputTxtBin" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>
+				
+				<p class="formfield">
+					<label for="outputTxtBin">Bin - Backwards/High:</label>
+					<textarea id="outputTxtBin" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>
+				
+				<p class="formfield">
+					<label for="outputTxtBin">Bin - Forward/Low:</label>
+					<textarea id="outputTxtBin" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>	
+				
+				<p class="formfield">
+					<label for="outputTxtBin">Bin - Backwards/Low:</label>
+					<textarea id="outputTxtBin" name="outputTxt" rows="10" cols="30"/></textarea>	
+				</p>					
+								
+			</div>	
+
+		</div>
+		<!--DECODE SECTION END-->
+		
+		
+	<!--Footer-->	
+	<hr>
+	<p1>You can learn more about how this method works with the code at </p1>
+	<a href="https://github.com/PotatoKingTheVII/ASCII-Spacing-Recover">github</a>
+	<p1>and contact me on Discord: PotatoKingTheVII#4280</p1>
+	
+</div>
+</body>
+
+
+<script>
+
+function bruteforceCall()
+{
+	var ciphertext = document.getElementById('inputTxt').value;
+	var output_box_list = document.getElementsByName("outputTxt");
+	var low_num = document.getElementById("low_num_input").value;
+	var high_num = document.getElementById("high_num_input").value;
+	
+	for(let i =0; i < 7; i++)
+	{
+		output_box_list[i].value = space_brute(ciphertext, i, low_num, high_num);
+	}
+}
+
+</script>
+
+</html>
